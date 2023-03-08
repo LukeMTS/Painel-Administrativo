@@ -11,22 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('users_permissions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
-            $table->string('zipcode', 255);
-            $table->string('state', 18);
-            $table->string('city', 41);
-            $table->string('street', 255);
-            $table->integer('number');
-            $table->string('complement', 255);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('permission_id');
             $table->timestamps();
         });
 
-        Schema::table('address', function (Blueprint $table) {
-            $table->foreign('customer_id')
+        Schema::table('users_permissions', function (Blueprint $table) {
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('customers')
+                ->onDelete('cascade');
+
+            $table->foreign('permission_id')
+                ->references('id')
+                ->on('permissions')
                 ->onDelete('cascade');
         });
     }
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('address');
+        Schema::dropIfExists('users_permissions');
     }
 };

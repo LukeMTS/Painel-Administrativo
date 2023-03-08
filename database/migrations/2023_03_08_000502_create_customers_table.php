@@ -18,9 +18,17 @@ return new class extends Migration
             $table->string('cpf', 11)->unique();
             $table->string('rg', 8);
             $table->date('birthdate');
-            $table->string('email', 255)->unique();
-            $table->integer('phone', 14);
+            $table->string('email', 250)->unique();
+            $table->integer('phone');
+            $table->unsignedBigInteger('situation_id');
             $table->timestamps();
+        });
+
+        Schema::table('customers', function (Blueprint $table) {
+            $table->foreign('situation_id')
+                ->references('id')
+                ->on('customers_situations')
+                ->onDelete('cascade');
         });
     }
 

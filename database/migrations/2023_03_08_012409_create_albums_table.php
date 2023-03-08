@@ -11,24 +11,32 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers_permissions', function (Blueprint $table) {
+        Schema::create('albums', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('permission_id');
+            $table->string('profile');
+            $table->string('type');
+            $table->string('title');
+            $table->string('description');
+            $table->unsignedBigInteger('multimedia_id');
+            $table->unsignedBigInteger('situation_id');
             $table->timestamps();
         });
 
-        Schema::table('customers_permissions', function (Blueprint $table) {
+        Schema::table('albums', function (Blueprint $table) {
             $table->foreign('customer_id')
                 ->references('id')
                 ->on('customers')
                 ->onDelete('cascade');
-        });
 
-        Schema::table('customers_permissions', function (Blueprint $table) {
-            $table->foreign('permission_id')
+            $table->foreign('multimedia_id')
                 ->references('id')
-                ->on('permissions')
+                ->on('multimedia')
+                ->onDelete('cascade');
+
+            $table->foreign('situation_id')
+                ->references('id')
+                ->on('albums_situations')
                 ->onDelete('cascade');
         });
     }
@@ -38,6 +46,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers_permissions');
+        Schema::dropIfExists('albums');
     }
 };
