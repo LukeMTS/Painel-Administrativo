@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('profile_type_id');
             $table->unsignedBigInteger('customer_id');
             $table->string('username', 255);
             $table->string('url', 255);
@@ -22,7 +22,7 @@ return new class extends Migration
         });
 
         Schema::table('profiles', function (Blueprint $table) {
-            $table->foreign('type_id')
+            $table->foreign('profile_type_id')
                 ->references('id')
                 ->on('profile_types')
                 ->onDelete('cascade');

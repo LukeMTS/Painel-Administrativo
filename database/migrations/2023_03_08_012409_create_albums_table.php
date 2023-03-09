@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
-            $table->string('profile', 16);
-            $table->string('type', 16);
-            $table->string('title', 20);
+            $table->string('profile', 50);
+            $table->string('type', 5);
+            $table->string('title', 50);
             $table->text('description');
-            $table->unsignedBigInteger('multimedia_id');
             $table->unsignedBigInteger('situation_id');
             $table->timestamps();
         });
@@ -27,11 +26,6 @@ return new class extends Migration
             $table->foreign('customer_id')
                 ->references('id')
                 ->on('customers')
-                ->onDelete('cascade');
-
-            $table->foreign('multimedia_id')
-                ->references('id')
-                ->on('multimedia')
                 ->onDelete('cascade');
 
             $table->foreign('situation_id')

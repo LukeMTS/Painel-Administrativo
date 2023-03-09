@@ -9,10 +9,11 @@ class Multimedia extends Model
 {
     use HasFactory;
 
-    protected $table = 'logs';
+    protected $table = 'multimedia';
 
     protected $fillable = [
         'path',
+        'album_id',
     ];
 
     public function albums_situations()

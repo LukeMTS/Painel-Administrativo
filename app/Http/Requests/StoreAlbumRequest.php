@@ -24,11 +24,13 @@ class StoreAlbumRequest extends FormRequest
         return [
             'customer_id'   => 'integer',
             'profile'       => 'required|string|max:16',
-            'type'          => 'required|string|max:16',
             'title'         => 'required|string|max:20',
-            'description'   => 'required|text',
+            'description'   => 'required|string',
+            'main_image'    => 'required',
+            'type'          => 'string',
+            'date_inclusion' => 'required',
             'multimedia_id' => 'integer',
-            'situation_id'  => 'integer',
+            'situation_id'    => 'integer',
         ];
     }
 }

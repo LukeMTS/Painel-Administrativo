@@ -39,6 +39,6 @@ class Customer extends Model
 
     public function profiles()
     {
-        return $this->hasOne(Profile::class);
+        return $this->hasMany(Profile::class);
     }
 }

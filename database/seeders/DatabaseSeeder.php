@@ -12,11 +12,62 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $data = [
+            [
+                'situation' => 'Disponível Público',
+            ],
+            [
+                'situation' => 'Disponível Restrito',
+            ],
+            [
+                'situation' => 'Bloqueado',
+            ],
+            [
+                'situation' => 'Excluído',
+            ],
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        ];
+        \App\Models\AlbumsSituation::insert($data);
+        \App\Models\UserSituation::insert($data);
+        \App\Models\CustomerSituation::insert($data);
+
+        $users = [
+            [
+                'name' => 'admin',
+                'birthdate' => '2022-01-01',
+                'phone' => '321',
+                'email' => 'admin@admin.com',
+                'password' => bcrypt('admin'),
+                'situation_id' => 1,
+            ]
+        ];
+
+        \App\Models\User::insert($users);
+
+        $permissions = [
+            [
+                'title' => 'Adicionar',
+                'permission' => 'add',
+            ],
+            [
+                'title' => 'Editar',
+                'permission' => 'edit',
+            ],
+            [
+                'title' => 'Deletar',
+                'permission' => 'delete',
+            ],
+        ];
+
+        \App\Models\Permission::insert($permissions);
+
+        \App\Models\UserPermission::insert(['user_id' => 1, 'permission_id' => 1]);
+
+        \App\Models\ProfileType::insert([
+            ['type' => 'Instagram', ],
+            ['type' => 'Face', ],
+            ['type' => 'Tw', ],
+            ['type' => 'T', ],
+        ]);
     }
 }

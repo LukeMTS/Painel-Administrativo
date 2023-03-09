@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,7 +13,15 @@ return new class extends Migration
         Schema::create('multimedia', function (Blueprint $table) {
             $table->id();
             $table->string('path', 255);
+            $table->unsignedBigInteger('album_id');
             $table->timestamps();
+        });
+
+        Schema::table('multimedia', function (Blueprint $table) {
+            $table->foreign('album_id')
+                ->references('id')
+                ->on('albums')
+                ->onDelete('cascade');
         });
     }
 

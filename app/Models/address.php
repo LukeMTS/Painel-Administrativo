@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class address extends Model
+class Address extends Model
 {
     use HasFactory;
 
@@ -19,11 +19,12 @@ class address extends Model
         'number',
         'complement',
         'estado',
+        'city',
     ];
 
     public function customers()
     {
-        return $this->belongsToMany(Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 
 }

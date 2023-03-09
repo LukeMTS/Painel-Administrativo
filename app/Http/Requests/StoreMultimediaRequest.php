@@ -22,7 +22,7 @@ class StoreMultimediaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'path' => 'required|string|max:255'
+            'path' => 'required|string|max:255',
         ];
     }
 }

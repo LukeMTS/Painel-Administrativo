@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Log extends Model
+class UserSituation extends Model
 {
     use HasFactory;
 
-    protected $table = 'logs';
+    protected $table = 'user_situations';
 
     protected $fillable = [
-        'user_id',
-        'action',
+        '*'
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

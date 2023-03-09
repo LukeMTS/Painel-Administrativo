@@ -33,6 +33,6 @@ class Album extends Model
 
     public function multimedia()
     {
-        return $this->hasOne(Multimedia::class);
+        return $this->hasMany(Multimedia::class);
     }
 }
