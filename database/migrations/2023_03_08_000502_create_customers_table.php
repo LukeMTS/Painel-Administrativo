@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('cpf', 11)->unique();
             $table->string('rg', 8);
             $table->date('birthdate');
-            $table->string('email', 250)->unique();
-            $table->integer('phone');
+            $table->string('email', 255)->unique();
+            $table->string('phone', 14);
             $table->unsignedBigInteger('situation_id');
             $table->timestamps();
         });

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('customer_id');
-            $table->string('username');
-            $table->string('url');
+            $table->string('username', 255);
+            $table->string('url', 255);
             $table->dateTime('last_access');
             $table->timestamps();
         });

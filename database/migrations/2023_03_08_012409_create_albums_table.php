@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
-            $table->string('profile');
-            $table->string('type');
-            $table->string('title');
-            $table->string('description');
+            $table->string('profile', 16);
+            $table->string('type', 16);
+            $table->string('title', 20);
+            $table->text('description');
             $table->unsignedBigInteger('multimedia_id');
             $table->unsignedBigInteger('situation_id');
             $table->timestamps();
