@@ -24,21 +24,21 @@ class Customer extends Model
 
     public function address()
     {
-        return $this->hasMany(Address::class);
+        return $this->hasOne(Address::class);
     }
 
     public function albums()
     {
-        return $this->hasMany(Album::class);
+        return $this->hasOne(Album::class);
     }
 
     public function customers_situations()
     {
-        return $this->hasOne(CustomerSituation::class);
+        return $this->belongsTo(CustomerSituation::class, 'situation_id');
     }
 
     public function profiles()
     {
-        return $this->hasMany(Profile::class);
+        return $this->hasOne(Profile::class);
     }
 }

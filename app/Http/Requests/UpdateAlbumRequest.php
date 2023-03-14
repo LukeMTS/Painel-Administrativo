@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAlbumRequest extends FormRequest
+class UpdateAlbumRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class StoreAlbumRequest extends FormRequest
             'profile'       => 'required|string|max:16',
             'title'         => 'required|string|max:20',
             'description'   => 'required|string',
-            'main_image'    => 'required',
+            'main_image'    => '',
             'type'          => 'required|string',
             'multimedia_id' => 'integer',
             'situation_id'  => 'integer',
@@ -34,8 +34,8 @@ class StoreAlbumRequest extends FormRequest
     }
 
     public function messages(): array
-{
-    return [
+    {
+        return [
         'customer_id.integer' => 'O campo "customer_id" deve ser um número inteiro.',
         'profile.required' => 'O campo "profile" é obrigatório.',
         'profile.string' => 'O campo "profile" deve ser uma string.',
@@ -45,11 +45,10 @@ class StoreAlbumRequest extends FormRequest
         'title.max' => 'O campo "title" deve ter no máximo :max caracteres.',
         'description.required' => 'O campo "description" é obrigatório.',
         'description.string' => 'O campo "description" deve ser uma string.',
-        'main_image.required' => 'O campo "main_image" é obrigatório.',
         'type.required' => 'O campo "type" é obrigatório.',
         'type.string' => 'O campo "type" deve ser uma string.',
         'multimedia_id.integer' => 'O campo "multimedia_id" deve ser um número inteiro.',
         'situation_id.integer' => 'O campo "situation_id" deve ser um número inteiro.',
-    ];
-}
+        ];
+    }
 }

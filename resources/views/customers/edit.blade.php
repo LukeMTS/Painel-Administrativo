@@ -9,9 +9,19 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <h2>Edição de Cliente</h2>
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <hr>
-                <form action="{{ route('customer.insert') }}" method="POST">
+                <form action="{{ route('customer.update', $customer->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="username">Nome de usuário:</label>
                         <input type="text" value="{{ $customer->username }}" class="form-control" id="username"
@@ -53,53 +63,53 @@
                             <select id="state" name="state"
                                 class="form-control">
                                 <option selected>Escolher...</option>
-                                <option>AC</option>
-                                <option>AL</option>
-                                <option>AP</option>
-                                <option>AM</option>
-                                <option>BA</option>
-                                <option>CE</option>
-                                <option>DF</option>
-                                <option>ES</option>
-                                <option>GO</option>
-                                <option>MA</option>
-                                <option>MT</option>
-                                <option>MS</option>
-                                <option>MG</option>
-                                <option>PA</option>
-                                <option>PB</option>
-                                <option>PR</option>
-                                <option>PE</option>
-                                <option>PI</option>
-                                <option>RJ</option>
-                                <option>RN</option>
-                                <option>RS</option>
-                                <option>RO</option>
-                                <option>RR</option>
-                                <option>SC</option>
-                                <option>SP</option>
-                                <option>SE</option>
-                                <option>TO</option>
+                                <option {{ $customer->address->state == 'AC' ? 'selected' : '' }}>AC</option>
+                                <option {{ $customer->address->state == 'AL' ? 'selected' : '' }}>AL</option>
+                                <option {{ $customer->address->state == 'AP' ? 'selected' : '' }}>AP</option>
+                                <option {{ $customer->address->state == 'AM' ? 'selected' : '' }}>AM</option>
+                                <option {{ $customer->address->state == 'BA' ? 'selected' : '' }}>BA</option>
+                                <option {{ $customer->address->state == 'CE' ? 'selected' : '' }}>CE</option>
+                                <option {{ $customer->address->state == 'DF' ? 'selected' : '' }}>DF</option>
+                                <option {{ $customer->address->state == 'ES' ? 'selected' : '' }}>ES</option>
+                                <option {{ $customer->address->state == 'GO' ? 'selected' : '' }}>GO</option>
+                                <option {{ $customer->address->state == 'MA' ? 'selected' : '' }}>MA</option>
+                                <option {{ $customer->address->state == 'MT' ? 'selected' : '' }}>MT</option>
+                                <option {{ $customer->address->state == 'MS' ? 'selected' : '' }}>MS</option>
+                                <option {{ $customer->address->state == 'MG' ? 'selected' : '' }}>MG</option>
+                                <option {{ $customer->address->state == 'PA' ? 'selected' : '' }}>PA</option>
+                                <option {{ $customer->address->state == 'PB' ? 'selected' : '' }}>PB</option>
+                                <option {{ $customer->address->state == 'PR' ? 'selected' : '' }}>PR</option>
+                                <option {{ $customer->address->state == 'PE' ? 'selected' : '' }}>PE</option>
+                                <option {{ $customer->address->state == 'PI' ? 'selected' : '' }}>PI</option>
+                                <option {{ $customer->address->state == 'RJ' ? 'selected' : '' }}>RJ</option>
+                                <option {{ $customer->address->state == 'RN' ? 'selected' : '' }}>RN</option>
+                                <option {{ $customer->address->state == 'RS' ? 'selected' : '' }}>RS</option>
+                                <option {{ $customer->address->state == 'RO' ? 'selected' : '' }}>RO</option>
+                                <option {{ $customer->address->state == 'RR' ? 'selected' : '' }}>RR</option>
+                                <option {{ $customer->address->state == 'SC' ? 'selected' : '' }}>SC</option>
+                                <option {{ $customer->address->state == 'SP' ? 'selected' : '' }}>SP</option>
+                                <option {{ $customer->address->state == 'SE' ? 'selected' : '' }}>SE</option>
+                                <option {{ $customer->address->state == 'TO' ? 'selected' : '' }}>TO</option>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="zipcode">CEP:</label>
-                            <input type="text" value="{{ $customer->address()->first()->zipcode }}" name="zipcode"
+                            <input type="text" value="{{ $customer->address->zipcode }}" name="zipcode"
                                 class="form-control" id="zipcode" placeholder="Digite o CEP">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="street">Rua:</label>
-                            <input type="text" value="{{ $customer->address()->first()->street }}" name="street"
+                            <input type="text" value="{{ $customer->address->street }}" name="street"
                                 class="form-control" id="street" placeholder="Digite a Rua">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="number">Número:</label>
-                            <input type="text" value="{{ $customer->address()->first()->number }}" name="number"
+                            <input type="text" value="{{ $customer->address->number }}" name="number"
                                 class="form-control" id="number" placeholder="Digite o Número">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="complement">Complemento:</label>
-                            <input type="text" value="{{ $customer->address()->first()->complement }}" name="complement"
+                            <input type="text" value="{{ $customer->address->complement }}" name="complement"
                                 class="form-control" id="complement" placeholder="Digite o Complemento">
                         </div>
                     </div>
@@ -108,31 +118,31 @@
                         <select class="form-control" id="profile_type_id" name="profile_type_id" required>
                             <option value="">Selecione o Perfil</option>
                             @foreach ($profileTypes as $profile)
-                                <option {{ $customer->profiles()->first()->profile_type_id == $profile->id ? 'selected' : '' }}
+                                <option {{ $customer->profiles->profile_type_id == $profile->id ? 'selected' : '' }}
                                     value="{{ $profile->id }}">{{ $profile->type }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="username_profile">Nome de usuário do perfil:</label>
-                        <input type="text" value="{{ $customer->profiles()->first()->username }}" name="profile" class="form-control"
+                        <label for="profile">Nome de usuário do perfil:</label>
+                        <input type="text" value="{{ $customer->profiles->username }}" name="profile" class="form-control"
                             id="profile" placeholder="Digite o nome de usuario">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="url">URL:</label>
-                        <input type="text" value="{{ $customer->profiles()->first()->url }}" name="url" class="form-control"
+                        <input type="text" value="{{ $customer->profiles->url }}" name="url" class="form-control"
                             id="url" placeholder="Digite o CEP">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="last_access">Último acesso:</label>
-                        <input type="text" value="{{ $customer->profiles()->first()->last_access }}" class="form-control" id="last_access" name="last_access" required>
+                        <input type="date" value="{{ $customer->profiles->last_access }}" class="form-control" id="last_access" name="last_access" required>
                     </div>
                     <div class="form-group">
                         <label for="telefone">Celular:</label>
                         <input type="tel" value="{{ $customer->phone }}" class="form-control" id="phone"
                             name="phone" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
                 </form>
             </div>
         </div>

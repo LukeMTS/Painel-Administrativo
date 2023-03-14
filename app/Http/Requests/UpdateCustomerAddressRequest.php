@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCustomerAddressRequest extends FormRequest
+class UpdateCustomerAddressRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,12 @@ class StoreCustomerAddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username'        => 'required|string|max:99|unique:customers', 
+            'username'        => 'required|string|max:99| unique:customers,username,' . $this->customer->id,
             'fullname'        => 'required|string|max:255',
-            'cpf'             => 'required|string|max:11|unique:customers',
-            'rg'              => 'required|string|max:8|unique:customers',
+            'cpf'             => 'required|string|max:11|unique:customers,cpf,' . $this->customer->id,
+            'rg'              => 'required|string|max:8|unique:customers,rg,' . $this->customer->id,
             'birthdate'       => 'required',
-            'email'           => 'required|string|max:255|unique:customers|email',
+            'email'           => 'required|string|max:255|email|unique:customers,email,' . $this->customer->id,
             'phone'           => 'required|string|max:14',
             'zipcode'         => 'required|string|max:255',
             'state'           => 'required|string|max:18',

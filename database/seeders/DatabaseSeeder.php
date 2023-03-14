@@ -25,9 +25,23 @@ class DatabaseSeeder extends Seeder
             [
                 'situation' => 'Excluído',
             ],
+        ];
+
+        \App\Models\AlbumsSituation::insert($data);
+
+        $data = [
+            [
+                'situation' => 'Ativo',
+            ],
+            [
+                'situation' => 'Inativo',
+            ],
+            [
+                'situation' => 'Bloqueado',
+            ],
 
         ];
-        \App\Models\AlbumsSituation::insert($data);
+
         \App\Models\UserSituation::insert($data);
         \App\Models\CustomerSituation::insert($data);
 
@@ -61,13 +75,30 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Permission::insert($permissions);
 
-        \App\Models\UserPermission::insert(['user_id' => 1, 'permission_id' => 1]);
+        $userPermissions = [
+            ['user_id' => 1, 'permission_id' => 1],
+            ['user_id' => 1, 'permission_id' => 2],
+            ['user_id' => 1, 'permission_id' => 3],
+        ];
+
+        \App\Models\UserPermission::insert($userPermissions);
 
         \App\Models\ProfileType::insert([
-            ['type' => 'Instagram', ],
-            ['type' => 'Face', ],
-            ['type' => 'Tw', ],
-            ['type' => 'T', ],
+            [
+                'type' => 'Instagram',
+            ],
+            [
+                'type' => 'Facebook',
+            ],
+            [
+                'type' => 'Twitter',
+            ],
+            [
+                'type' => 'TikTok',
+            ],
+            [
+                'type' => 'Outros',
+            ],
         ]);
     }
 }

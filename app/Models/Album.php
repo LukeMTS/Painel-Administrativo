@@ -28,7 +28,7 @@ class Album extends Model
 
     public function albums_situations()
     {
-        return $this->hasOne(AlbumsSituation::class);
+        return $this->belongsTo(AlbumsSituation::class, 'situation_id');
     }
 
     public function multimedia()

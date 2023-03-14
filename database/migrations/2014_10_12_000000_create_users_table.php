@@ -22,13 +22,6 @@ return new class extends Migration {
             $table->rememberToken();
             $table->timestamps();
         });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('situation_id')
-                ->references('id')
-                ->on('user_situations')
-                ->onDelete('cascade');
-        });
     }
 
     /**

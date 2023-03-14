@@ -17,6 +17,6 @@ class CustomerSituation extends Model
 
     public function customers()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->hasMany(Customer::class, 'situation_id');
     }
 }

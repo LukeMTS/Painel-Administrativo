@@ -24,12 +24,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::table('customers', function (Blueprint $table) {
-            $table->foreign('situation_id')
-                ->references('id')
-                ->on('customers_situations')
-                ->onDelete('cascade');
-        });
     }
 
     /**

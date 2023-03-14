@@ -21,7 +21,7 @@ return new class extends Migration
         Schema::table('users_permissions', function (Blueprint $table) {
             $table->foreign('user_id')
                 ->references('id')
-                ->on('customers')
+                ->on('users')
                 ->onDelete('cascade');
 
             $table->foreign('permission_id')

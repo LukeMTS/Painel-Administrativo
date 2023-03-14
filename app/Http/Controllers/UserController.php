@@ -39,7 +39,7 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Autenticação bem sucedida
-            return redirect()->intended('/customer/register');
+            return redirect()->intended('/home');
         }
 
         // Autenticação falhou

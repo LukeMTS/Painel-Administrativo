@@ -21,18 +21,6 @@ return new class extends Migration
             $table->unsignedBigInteger('situation_id');
             $table->timestamps();
         });
-
-        Schema::table('albums', function (Blueprint $table) {
-            $table->foreign('customer_id')
-                ->references('id')
-                ->on('customers')
-                ->onDelete('cascade');
-
-            $table->foreign('situation_id')
-                ->references('id')
-                ->on('albums_situations')
-                ->onDelete('cascade');
-        });
     }
 
     /**

@@ -26,5 +26,4 @@ class Address extends Model
     {
         return $this->belongsTo(Customer::class);
     }
-
 }

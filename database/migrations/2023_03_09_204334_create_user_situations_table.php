@@ -16,6 +16,13 @@ return new class extends Migration
             $table->string('situation', 20);
             $table->timestamps();
         });
+        
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('situation_id')
+                ->references('id')
+                ->on('user_situations')
+                ->onDelete('cascade');
+        });
     }
 
     /**

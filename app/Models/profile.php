@@ -16,7 +16,8 @@ class Profile extends Model
         'customer_id',
         'username',
         'url',
-        'last_access'
+        'last_access',
+        'profile_type_id',
     ];
 
     public function customers()

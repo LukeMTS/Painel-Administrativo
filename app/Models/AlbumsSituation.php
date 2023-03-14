@@ -17,6 +17,6 @@ class AlbumsSituation extends Model
 
     public function albums()
     {
-        return $this->belongsTo(Album::class);
+        return $this->hasMany(Album::class, 'situation_id');
     }
 }

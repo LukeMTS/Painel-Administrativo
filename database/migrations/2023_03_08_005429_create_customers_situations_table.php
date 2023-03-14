@@ -16,6 +16,13 @@ return new class extends Migration
             $table->string('situation', 50);
             $table->timestamps();
         });
+        
+        Schema::table('customers', function (Blueprint $table) {
+            $table->foreign('situation_id')
+                ->references('id')
+                ->on('customers_situations')
+                ->onDelete('cascade');
+        });
     }
 
     /**
